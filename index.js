@@ -10,7 +10,7 @@ const input = args.shortcutParameter;
 const config = {
 	anki_profile: "YOUR_ANKI_PROFILE_NAME", // <---- modify this line
 	anki_deck_name: "YOUR_ANKI_DECK_NAME", // <---- modify this line
-	anki_note_type: "ENG-Omni",
+	anki_note_type: "Apora-English",
 	apora_base_url: "https://apora.sumku.cc/api/dict",
 	apora_api_token: "YOUR_APORA_API_TOKEN", // <---- modify this line, get your token at https://apora.sumku.cc
 	apora_colorize: true,

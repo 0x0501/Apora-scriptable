@@ -3,6 +3,7 @@
 Apora scriptable integration. This project make Apora easy to use on iOS/iPad with [Scriptable](https://scriptable.app/) and Shortcuts.
 
 > **Important:** You must **download Apora shortcuts first** before install this script. Click [https://www.icloud.com/shortcuts/647d2ef5004d43a28d08be5230bb100b](https://www.icloud.com/shortcuts/647d2ef5004d43a28d08be5230bb100b) to download.
+> By default. It utilize `Apora-English` as Anki Note Template, you could make your own template if you want.
 
 ## Installment
 
@@ -10,6 +11,7 @@ Apora scriptable integration. This project make Apora easy to use on iOS/iPad wi
 2. Create a empty scriptable file.
 3. Copy all the content in `index.js` and paste it in the file you've just created.
 4. Follow the comments in the `index.js`, configure Anki and Apora.
+5. Download `Apora-English.apkg` from repository and import it to Anki.
 
 ## Configuration
 
