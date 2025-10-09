@@ -8,7 +8,7 @@ Apora scriptable integration. This project make Apora easy to use on iOS/iPad wi
 ## Installment
 
 1. Download Scriptable from Apple Store.
-2. Create a empty scriptable file.
+2. Create a empty scriptable file **with the name `Apora Helper`**.
 3. Copy all the content in `index.js` and paste it in the file you've just created.
 4. Follow the comments in the `index.js`, configure Anki and Apora.
 5. Download `Apora-English.apkg` from repository and import it to Anki.
