@@ -82,7 +82,7 @@ if (res.success && res.data) {
 		Phonetics: res.data.ipa,
 		Word: res.data.original,
 		Definition: res.data.meaning,
-		Extra: res.data.chineseMeaning,
+		Chinese_Definition: res.data.chineseMeaning,
 	};
 
 	const flatten_fields = parseFields(fields);
