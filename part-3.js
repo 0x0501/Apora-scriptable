@@ -41,7 +41,7 @@ function parseFields(fields) {
 function colorizeFullText(fullText, selected) {
 	return fullText.replace(
 		selected,
-		`<span style="font-weight: bold; color: ${config.apora_colorize_color_hex};">${selected}</span>`,
+		`<span style="font-weight: bold; color: ${config.color_hex};">${selected}</span>`,
 	);
 }
 
