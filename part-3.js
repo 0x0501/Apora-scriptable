@@ -32,6 +32,7 @@ const input = args.shortcutParameter;
  * @property {"US" | "GB"} pronunciationVariant
  * @property {string} ipa
  * @property {string} [context] - Context for the inquiring term, if `context` feature is enabled
+ * @property {string} [replacing] - A special field for replacing term in context, no matter which form the term turned into, we can always look it up by searching `replacing` in context field. This will only present when context enabled.
  * @property {string} [fileNameTag] - Audio filename tag, if `speech` feature is enabled
  */
 
@@ -93,11 +94,21 @@ if (fullText && fullText.length > 0) {
 	sanitizedFullText = inquire; // This is fallback for server error.
 }
 
+let searchTerm = "";
+
+if (config.context) {
+	if (data.replacing) {
+		searchTerm = data.replacing;
+	} else {
+		searchTerm = inquire;
+	}
+} else {
+	searchTerm = inquire;
+}
+
 const fields = {
 	Sentence: config.colorize
-		? sanitizedFullText.includes(inquire)
-			? colorizeFullText(sanitizedFullText, inquire)
-			: colorizeFullText(sanitizedFullText, data.original) // if `context` feature enabled, we may search original form instead of inquiring term.
+		? colorizeFullText(sanitizedFullText, searchTerm) // if `context` feature enabled, we may search original form instead of inquiring term.
 		: sanitizedFullText,
 	Phonetics: data.ipa,
 	Word: data.original,
