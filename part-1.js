@@ -5,6 +5,13 @@
  * @author: 0x0501
  */
 
+/**
+ * @typedef {Object} TTSConfig
+ * @property {boolean} tts_words
+ * @property {boolean} tts_sentence
+ */
+
+/**@type {TTSConfig} */
 const input = args.shortcutParameter;
 
 if (input.tts_words && input.tts_sentence) {

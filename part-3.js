@@ -7,9 +7,44 @@
 
 const input = args.shortcutParameter;
 
+/**
+ * @typedef {Object} ConfigType
+ * @property {string} profile - Anki's Profile name
+ * @property {string} deck_name - Anki's deck name
+ * @property {string} note_type - Anki's note type
+ * @property {string} token - Apora API Token
+ * @property {boolean} colorize - Enable colorize inquiring term in context (full-text).
+ * @property {string} color_hex - Color hex which used to highlight term in the context (full-text).
+ * @property {boolean} debug - Enable `debug` mode
+ * @property {boolean} tts_words - Enable TTS for inquiring term/phrases.
+ * @property {boolean} tts_sentence - Enable TTS for full-text or context.
+ * @property {boolean} context - Enable Context feature.
+ * @property {"US" | "GB"} variant - Pronunciation variant, effect IPA and speaking.
+ */
+
+/**
+ *
+ * @typedef {Object} DataType
+ * @property {string} partOfSpeech
+ * @property {string} original
+ * @property {string} meaning
+ * @property {string} chineseMeaning
+ * @property {"US" | "GB"} pronunciationVariant
+ * @property {string} ipa
+ * @property {string} [context] - Context for the inquiring term, if `context` feature is enabled
+ * @property {string} [fileNameTag] - Audio filename tag, if `speech` feature is enabled
+ */
+
+/** @type {ConfigType} */
 const config = JSON.parse(input.config);
+
+/**@type {string} - User provided full-text */
 const fullText = input.fullText;
+
+/**@type {string} - User inquiring term */
 const inquire = input.inquire;
+
+/** @type {DataType} - Response data retrieved from server */
 const data = JSON.parse(input.data);
 
 /**
@@ -20,6 +55,7 @@ const data = JSON.parse(input.data);
  */
 function parseFields(fields) {
 	const fields_pair = Object.getOwnPropertyNames(fields).map((v) => {
+		// @ts-expect-error This is safe, trust me.
 		return `fld${v}=${encodeURIComponent(fields[v])}`;
 	});
 

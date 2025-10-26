@@ -5,6 +5,9 @@
  * @author: 0x0501
  */
 
+/**
+ * @type {string[]}
+ */
 const input = args.shortcutParameter.split(" ");
 
 const remove_specials = input
