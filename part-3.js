@@ -38,7 +38,7 @@ const input = args.shortcutParameter;
 /** @type {ConfigType} */
 const config = JSON.parse(input.config);
 
-/**@type {string} - User provided full-text */
+/**@type {string | null} - User provided full-text */
 const fullText = input.fullText;
 
 /**@type {string} - User inquiring term */
@@ -83,8 +83,22 @@ function colorizeFullText(fullText, selected) {
 
 const AUDIO_GATEWAY = "https://apora.sumku.cc/api/dict";
 
+let sanitizedFullText = "";
+
+if (fullText && fullText.length > 0) {
+	sanitizedFullText = fullText;
+} else if (data.context) {
+	sanitizedFullText = data.context;
+} else {
+	sanitizedFullText = inquire; // This is fallback for server error.
+}
+
 const fields = {
-	Sentence: config.colorize ? colorizeFullText(fullText, inquire) : fullText,
+	Sentence: config.colorize
+		? sanitizedFullText.includes(inquire)
+			? colorizeFullText(sanitizedFullText, inquire)
+			: colorizeFullText(sanitizedFullText, data.original) // if `context` feature enabled, we may search original form instead of inquiring term.
+		: sanitizedFullText,
 	Phonetics: data.ipa,
 	Word: data.original,
 	Definition: data.meaning,
