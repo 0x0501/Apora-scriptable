@@ -8,6 +8,11 @@
 const input = args.shortcutParameter;
 
 /**
+ * Support languages
+ * @typedef {"english" | "french"} Language
+ */
+
+/**
  * @typedef {Object} ConfigType
  * @property {string} profile - Anki's Profile name
  * @property {string} deck_name - Anki's deck name
@@ -20,10 +25,10 @@ const input = args.shortcutParameter;
  * @property {boolean} tts_sentence - Enable TTS for full-text or context.
  * @property {boolean} context - Enable Context feature.
  * @property {"US" | "GB"} variant - Pronunciation variant, effect IPA and speaking.
+ * @property {Language} language
  */
 
 /**
- *
  * @typedef {Object} DataType
  * @property {string} partOfSpeech
  * @property {string} original
@@ -116,14 +121,16 @@ const fields = {
 	Chinese_Definition: data.chineseMeaning,
 	...(config.tts_words || config.tts_sentence
 		? {
-				Pronunciation: `${AUDIO_GATEWAY}/${config.token}/${data.fileNameTag}.wav`,
-			}
+			Pronunciation:
+				`${AUDIO_GATEWAY}/${config.token}/${data.fileNameTag}.wav`,
+		}
 		: {}),
 };
 
 const flatten_fields = parseFields(fields);
 
-const meta_schema = `anki://x-callback-url/addnote?profile=${config.profile}&type=${config.note_type}&deck=${config.deck_name}&tags=${data.partOfSpeech} Apora`;
+const meta_schema =
+	`anki://x-callback-url/addnote?profile=${config.profile}&type=${config.note_type}&deck=${config.deck_name}&tags=${data.partOfSpeech} Apora`;
 
 const data_schema = `&${flatten_fields}`;
 
